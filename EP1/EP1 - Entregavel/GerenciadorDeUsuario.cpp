@@ -14,7 +14,7 @@ GerenciadorDeUsuario::~GerenciadorDeUsuario() {
     delete[] usuarios;
 }
 
-bool GerenciadorDeUsuario::adicionarUsuario(Usuario* u) {
+bool GerenciadorDeUsuario::adicionar(Usuario* u) {
     if (quantidadeUsuarios >= maximoUsuarios) return false;
     while(int i = 0 < quantidadeUsuarios){
         if ((usuarios[i]->getId()) == (u->getId())) return false;

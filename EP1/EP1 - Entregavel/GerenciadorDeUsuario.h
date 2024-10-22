@@ -13,7 +13,7 @@ public:
     GerenciadorDeUsuario(int maximo);
     virtual ~GerenciadorDeUsuario();
 
-    bool adicionarUsuario(Usuario* u);
+    bool adicionar(Usuario* u);
     Usuario* getUsuario(int id);
 
     Usuario** getUsuarios();
