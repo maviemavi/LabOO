@@ -5,16 +5,16 @@
 
 class GerenciadorDeUsuario {
 private:
-    Usuario** usuarios = nullptr;
+    Usuario** usuarios;
     int quantidadeUsuarios;
     int maximoUsuarios;
 
 public:
     GerenciadorDeUsuario(int maximo);
-    virtual ~GerenciadorDeUsuario();
+    ~GerenciadorDeUsuario();
 
     bool adicionarUsuario(Usuario* u);
-    Usuario* getUsuario(int id);
+    Usuario* buscarUsuarioPorId(int id);
 
     Usuario** getUsuarios();
     int getQuantidade();

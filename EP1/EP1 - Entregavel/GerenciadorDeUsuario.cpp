@@ -21,7 +21,7 @@ bool GerenciadorDeUsuario::adicionarUsuario(Usuario* u) {
     return true;
 }
 
-Usuario* GerenciadorDeUsuario::getUsuario(int id) {
+Usuario* GerenciadorDeUsuario::buscarUsuarioPorId(int id) {
     for (int i = 0; i < quantidadeUsuarios; i++) {
         if (usuarios[i]->getId() == id) {
             return usuarios[i];

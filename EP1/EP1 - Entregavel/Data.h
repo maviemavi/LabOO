@@ -15,6 +15,7 @@ public:
     int getDia();
     int getMes();
     int getAno();
+    void imprimir();
 
     int diferenca(Data* d);
 };

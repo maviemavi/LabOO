@@ -47,3 +47,7 @@ int Data::diferenca(Data* d) {
 
     return (int) diferencaSegundos;
 }
+void Data::imprimir(){
+    cout << "Data: " << getDia() << "/" << getMes() << "/" << getAno() << " - "
+    << getHora() << ":" << getMinuto() << ":" << getSegundo() << endl;
+}
