@@ -1,4 +1,5 @@
 #include "Registro.h"
+#include "Data.h"
 
 Registro::Registro(Data* d, bool entrada, bool manual) {
     this->data = d;

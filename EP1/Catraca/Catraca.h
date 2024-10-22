@@ -1,8 +1,8 @@
 #ifndef CATRACA_H
 #define CATRACA_H
 
-#include "gerenciadorDeUsuario.h"
-#include "data.h"
+#include "GerenciadorDeUsuario.h"
+#include "Data.h"
 
 class Catraca {
 private:

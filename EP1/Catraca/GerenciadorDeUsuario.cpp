@@ -16,6 +16,10 @@ GerenciadorDeUsuario::~GerenciadorDeUsuario() {
 
 bool GerenciadorDeUsuario::adicionarUsuario(Usuario* u) {
     if (quantidadeUsuarios >= maximoUsuarios) return false;
+    while(int i = 0 < quantidadeUsuarios){
+        if ((usuarios[i]->getId()) == (u->getId())) return false;
+        i++;
+    }
     usuarios[quantidadeUsuarios] = u;
     quantidadeUsuarios++;
     return true;
