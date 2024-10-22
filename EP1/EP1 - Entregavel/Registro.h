@@ -5,13 +5,13 @@
 
 class Registro {
 private:
-    Data* data;
+    Data* data = nullptr;
     bool entrada;
     bool manual;
 
 public:
     Registro(Data* d, bool entrada, bool manual);
-    ~Registro();
+    virtual ~Registro();
 
     Data* getData();
     bool isEntrada();

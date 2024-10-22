@@ -16,12 +16,16 @@ GerenciadorDeUsuario::~GerenciadorDeUsuario() {
 
 bool GerenciadorDeUsuario::adicionarUsuario(Usuario* u) {
     if (quantidadeUsuarios >= maximoUsuarios) return false;
+    while(int i = 0 < quantidadeUsuarios){
+        if ((usuarios[i]->getId()) == (u->getId())) return false;
+        i++;
+    }
     usuarios[quantidadeUsuarios] = u;
     quantidadeUsuarios++;
     return true;
 }
 
-Usuario* GerenciadorDeUsuario::buscarUsuarioPorId(int id) {
+Usuario* GerenciadorDeUsuario::getUsuario(int id) {
     for (int i = 0; i < quantidadeUsuarios; i++) {
         if (usuarios[i]->getId() == id) {
             return usuarios[i];
