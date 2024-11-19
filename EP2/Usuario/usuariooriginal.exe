@@ -1,0 +1,89 @@
+#include "Usuario.h"
+#include "Registro.h"
+#include "Data.h"
+#include <iostream>
+
+Usuario::Usuario(int id, string nome, int maximo) {
+    this->id = id;
+    this->nome = nome;
+    this->dentro = false;
+    this->maximoRegistros = maximo;
+    this->quantidadeRegistros = 0;
+    this->registros = new Registro*[maximo];
+}
+
+Usuario::~Usuario() {
+    for (int i = 0; i < quantidadeRegistros; i++) {
+        delete registros[i];
+    }
+    delete[] registros;
+}
+
+
+string Usuario::getNome() {
+    return nome;
+}
+
+int Usuario::getId() {
+    return id;
+}
+
+bool Usuario::entrar(Data* d) {
+    if (this->quantidadeRegistros >= this->maximoRegistros) return false;
+    if (this->dentro == true) return false;
+    if (this->registros[0][this->quantidadeRegistros].getData()->diferenca(d) < 0) return false;
+    this->registros[0][this->quantidadeRegistros] = Registro(d, true, false);
+    this->quantidadeRegistros++;
+    return true;
+}
+
+bool Usuario::sair(Data* d) {
+    if (this->quantidadeRegistros >= this->maximoRegistros) return false;
+    if (this->dentro == true) return false;
+    if (this->registros[1][this->quantidadeRegistros].getData()->diferenca(d) < 0) return false;
+    this->registros[1][this->quantidadeRegistros] = Registro(d, false, false);
+    this->quantidadeRegistros++;
+    return true;
+
+}
+
+bool Usuario::registrarEntradaManual(Data* d) {
+    if (this->quantidadeRegistros >= this->maximoRegistros) return false;
+    if (this->dentro == true) return false;
+    if (this->registros[0][this->quantidadeRegistros].getData()->diferenca(d) < 0) return false;
+    this->registros[0][this->quantidadeRegistros] = Registro(d, true, true);
+    this->quantidadeRegistros++;
+    return true;
+}
+
+
+bool Usuario::registrarSaidaManual(Data* d) {
+    if (this->quantidadeRegistros >= this->maximoRegistros) return false;
+    if (this->dentro == true) return false;
+    if (this->registros[1][this->quantidadeRegistros].getData()->diferenca(d) < 0) return false;
+    this->registros[1][this->quantidadeRegistros] = Registro(d, false, true);
+    this->quantidadeRegistros++;
+    return true;
+}
+
+int Usuario::getHorasTrabalhadas(int mes, int ano) {
+    int totalSegundos = 0;
+
+    for (int i = 0; i < this->quantidadeRegistros; i++) {
+        Registro* reg = this->registros[i];
+        if (reg->getData()->getMes() == mes && reg->getData()->getAno() == ano) {
+            if (reg->isEntrada() && i + 1 < this->quantidadeRegistros && !this->registros[i + 1]->isEntrada()) {
+                totalSegundos += this->registros[i + 1]->getData()->diferenca(reg->getData());
+            }
+        }
+    }
+}
+
+Registro** Usuario::getRegistros() {
+    return registros;
+}
+
+
+int Usuario::getQuantidade() {
+    return quantidadeRegistros;
+}
