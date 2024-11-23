@@ -4,6 +4,10 @@
 using namespace std;
 
 Data::Data(int hora, int minuto, int segundo, int dia, int mes, int ano) {
+     if (hora < 0 || hora > 23 || minuto < 0 || minuto > 59 || segundo < 0 || segundo > 59 ||
+        dia < 1 || dia > 31 || mes < 1 || mes > 12) {
+        throw std::logic_error(" Data invalida");
+         }
     this->data->tm_hour = hora;
     this->data->tm_min = minuto;
     this->data->tm_sec = segundo;
